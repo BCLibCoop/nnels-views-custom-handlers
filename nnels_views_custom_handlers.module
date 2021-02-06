@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * Implements hook_views_api().
+ */
+function nnels_views_custom_handlers_views_api() {
+  return [
+    'api' => 3,
+  ];
+}
+
+/**
+ * Implements hook_views_post_execute().
+ */
+function nnels_views_custom_handlers_views_post_execute(&$view) {
+
+  // Selected Annotation field.
+  if (isset($view->field['file_size_warning'])) {
+
+    // // Get a list of nodes so the data can be selected in a bulk fashion.
+    // $nids = array();
+    // foreach ($view->result as $result) {
+    //   $nids[] = $result->nid;
+    // }
+    // $annotations = nnels_content_cafe_select_multiple_content_cafe_annotation_rows_by_nids($nids);
+    
+    // // Update the results with the data.
+    // foreach ($view->result as $result) {
+    //   if (isset($annotations[$result->nid])) {
+    //     foreach ($annotations[$result->nid] as $annotation) {
+    //       if ($annotation->selected) {
+    //         $result->content_cafe_selected_annotation = $annotation->annotation;
+    //       }
+    //     }
+    //   }
+    //   else {
+    //     $result->content_cafe_selected_annotation = NULL;
+    //   }
+    // }
+  }
+}
