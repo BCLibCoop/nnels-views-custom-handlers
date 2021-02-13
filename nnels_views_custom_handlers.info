@@ -6,4 +6,5 @@ version = 7.x-1.0
 
 dependencies[] = views
 
+files[] = plugins/nnels_views_custom_handlers_add_button_views_area_handler.inc
 files[] = plugins/nnels_views_custom_handlers_file_size_warning_views_field_handler.inc

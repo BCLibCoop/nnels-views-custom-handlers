@@ -6,12 +6,20 @@
 function nnels_views_custom_handlers_views_data() {
   $data = [];
 
-  // Selected Annotation.
+  // File Size Warning.
   $data['node']['file_size_warning'] = array(
     'title' => t('File Size Warning'),
     'field' => array(
       'help'    => t('The file size check and warning field (specific to the repository item content type).'),
       'handler' => 'nnels_views_custom_handlers_file_size_warning_views_field_handler',
+    ),
+  );
+
+  $data['views']['add_button'] = array(
+    'title' => t('Add Button'),
+    'area' => array(
+      'help' => t('Add a button.'),
+      'handler' => 'nnels_views_custom_handlers_add_button_views_area_handler',
     ),
   );
 
