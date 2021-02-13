@@ -14,28 +14,37 @@ function nnels_views_custom_handlers_views_api() {
  */
 function nnels_views_custom_handlers_views_post_execute(&$view) {
 
-  // Selected Annotation field.
+  // File Size Warning Field.
   if (isset($view->field['file_size_warning'])) {
+    _nnels_views_custom_handlers_set_file_size_warning_field($view);
+  }
+}
 
-    // // Get a list of nodes so the data can be selected in a bulk fashion.
-    // $nids = array();
-    // foreach ($view->result as $result) {
-    //   $nids[] = $result->nid;
-    // }
-    // $annotations = nnels_content_cafe_select_multiple_content_cafe_annotation_rows_by_nids($nids);
-    
-    // // Update the results with the data.
-    // foreach ($view->result as $result) {
-    //   if (isset($annotations[$result->nid])) {
-    //     foreach ($annotations[$result->nid] as $annotation) {
-    //       if ($annotation->selected) {
-    //         $result->content_cafe_selected_annotation = $annotation->annotation;
-    //       }
-    //     }
-    //   }
-    //   else {
-    //     $result->content_cafe_selected_annotation = NULL;
-    //   }
-    // }
+/**
+ * Set File Size Warning Field.
+ * 
+ * @param object $view
+ */
+function _nnels_views_custom_handlers_set_file_size_warning_field(&$view) {
+  foreach ($view->result as $result) {
+    if (isset($view->field['filesize']) && isset($result->{$view->field['filesize']->field_alias})) {
+
+      // If the filesize is greater than 400MB, show the file size warning.
+      if ((int) $result->{$view->field['filesize']->field_alias} > 419430400) {
+        $alt = t('Filesize Warning');
+        $title = t('This file&apos;s size is larger than average on NNELS. Expect a longer download time than usual, depending on your connection.');
+        $message = t('Long download time');
+        $result->file_size_warning = '<div class="file-size-warning" alt="' . $alt . '" title="' . $title . '">';
+        $result->file_size_warning .= '<i class="fa fa-exclamation-triangle" aria-hidden="true"> ' . $message . '</i>';
+        $result->file_size_warning .= '</div>';
+      }
+    }
+
+    // The file size warning is dependant on the filesize field. If the file-
+    // size field is not present, display some warning text so the admin can
+    // fix it.
+    else {
+      $result->file_size_warning = "'File: Size' field is missing and is required!";
+    }
   }
 }
