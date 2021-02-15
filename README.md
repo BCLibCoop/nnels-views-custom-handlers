@@ -14,6 +14,10 @@ This field requires the File: Size field to be added to the view.
 
 Displays a button, based on the node that the view is attached to. The path and text are options.
 
+### Search Warning
+
+Outputs a message for library search.
+
 ### Term Warning
 
 Outputs a messages related to terms.

@@ -24,6 +24,15 @@ function nnels_views_custom_handlers_views_data() {
     ),
   );
 
+  // Area: Search Message.
+  $data['views']['search_message'] = array(
+    'title' => t('Search Message'),
+    'area' => array(
+      'help' => t('Print message on search page.'),
+      'handler' => 'nnels_views_custom_handlers_search_message_views_area_handler',
+    ),
+  );
+
   // Area: Term Warning.
   $data['views']['term_warning'] = array(
     'title' => t('Term Warning'),
