@@ -6,7 +6,7 @@
 function nnels_views_custom_handlers_views_data() {
   $data = [];
 
-  // File Size Warning.
+  // Field: File Size Warning.
   $data['node']['file_size_warning'] = array(
     'title' => t('File Size Warning'),
     'field' => array(
@@ -15,11 +15,21 @@ function nnels_views_custom_handlers_views_data() {
     ),
   );
 
+  // Area: Add Button.
   $data['views']['add_button'] = array(
     'title' => t('Add Button'),
     'area' => array(
       'help' => t('Add a button.'),
       'handler' => 'nnels_views_custom_handlers_add_button_views_area_handler',
+    ),
+  );
+
+  // Area: Term Warning.
+  $data['views']['term_warning'] = array(
+    'title' => t('Term Warning'),
+    'area' => array(
+      'help' => t('Print term warning with terms.'),
+      'handler' => 'nnels_views_custom_handlers_term_warning_views_area_handler',
     ),
   );
 

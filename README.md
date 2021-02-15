@@ -13,3 +13,7 @@ This field requires the File: Size field to be added to the view.
 ### Add Button
 
 Displays a button, based on the node that the view is attached to. The path and text are options.
+
+### Term Warning
+
+Outputs a messages related to terms.
