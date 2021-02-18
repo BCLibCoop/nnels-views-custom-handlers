@@ -6,6 +6,15 @@
 function nnels_views_custom_handlers_views_data() {
   $data = [];
 
+  // Field: Bookshelf Remove.
+  $data['node']['bookshelf_remove'] = array(
+    'title' => t('Bookshelf Remove Link'),
+    'field' => array(
+      'help'    => t('Add the remove link for the bookshelf item.'),
+      'handler' => 'nnels_views_custom_handlers_bookshelf_remove_views_field_handler',
+    ),
+  );
+
   // Field: File Size Warning.
   $data['node']['file_size_warning'] = array(
     'title' => t('File Size Warning'),
