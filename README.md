@@ -20,6 +20,10 @@ This field requires the File: Size field to be added to the view.
 
 Displays a button, based on the node that the view is attached to. The path and text are options.
 
+### Feed Icons
+
+Display feed icons.
+
 ### Recently Added Title
 
 Outputs a translated title with some markup.

@@ -33,6 +33,15 @@ function nnels_views_custom_handlers_views_data() {
     ),
   );
 
+  // Area: Feed Icons.
+  $data['views']['feed_icons'] = array(
+    'title' => t('Feed Icons'),
+    'area' => array(
+      'help' => t('Add feed icons'),
+      'handler' => 'nnels_views_custom_handlers_feed_icons_views_area_handler',
+    ),
+  );
+
   // Area: Recently Added Title.
   $data['views']['recently_added_title'] = array(
     'title' => t('Recently Added Title'),
