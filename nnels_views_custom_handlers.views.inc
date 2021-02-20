@@ -51,6 +51,15 @@ function nnels_views_custom_handlers_views_data() {
     ),
   );
 
+  // Area: Term Title.
+  $data['views']['term_title'] = array(
+    'title' => t('Term Title'),
+    'area' => array(
+      'help' => t('Print term title.'),
+      'handler' => 'nnels_views_custom_handlers_term_title_views_area_handler',
+    ),
+  );
+
   // Area: Term Warning.
   $data['views']['term_warning'] = array(
     'title' => t('Term Warning'),
