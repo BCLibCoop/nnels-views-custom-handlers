@@ -33,6 +33,15 @@ function nnels_views_custom_handlers_views_data() {
     ),
   );
 
+  // Area: Recently Added Title.
+  $data['views']['recently_added_title'] = array(
+    'title' => t('Recently Added Title'),
+    'area' => array(
+      'help' => t('Add a translated title.'),
+      'handler' => 'nnels_views_custom_handlers_recently_added_title_views_area_handler',
+    ),
+  );
+
   // Area: Search Message.
   $data['views']['search_message'] = array(
     'title' => t('Search Message'),
