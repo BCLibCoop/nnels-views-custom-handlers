@@ -19,6 +19,11 @@ function nnels_views_custom_handlers_views_post_execute(&$view) {
     _nnels_views_custom_handlers_set_bookshelf_remove_field($view);
   }
 
+  // Duplicate S3 Field.
+  if (isset($view->field['duplicate_s3'])) {
+    _nnels_views_custom_handlers_set_duplicate_s3_field($view);
+  }
+
   // File Size Warning Field.
   if (isset($view->field['file_size_warning'])) {
     _nnels_views_custom_handlers_set_file_size_warning_field($view);
@@ -39,6 +44,44 @@ function _nnels_views_custom_handlers_set_bookshelf_remove_field(&$view) {
     }
 
     // The bookshelf_remove link is dependant on the nid field. If the nid
+    // field is not present, display some warning text so the admin can fix it.
+    else {
+      $result->bookshelf_remove = "'Content: Nid' field is missing and is required!";
+    }
+  }
+}
+
+/**
+ * Set Duplicate S3 Field.
+ *
+ * @param object $view
+ */
+function _nnels_views_custom_handlers_set_duplicate_s3_field(&$view) {
+  foreach ($view->result as $result) {
+    if (isset($view->field['nid']) && isset($result->{$view->field['nid']->field_alias})) {
+      if (isset($view->field['field_s3_path']) && isset($result->{$view->field['field_s3_path']->field_alias})) {
+        if (function_exists("_cals_get_node_with_duplicate_s3") ) {
+          $result->duplicate_s3 = _cals_get_node_with_duplicate_s3($result);
+        }
+        else {
+          // cals_file_authentication.module printPre() essentially.
+          $result->duplicate_s3 = '<hr><blockquote>';
+          $result->duplicate_s3 .= '<pre>';
+          $result->duplicate_s3 .= print_r($result. TRUE);
+          $result->duplicate_s3 .= '</pre>';
+          $result->duplicate_s3 .= '</blockquote>';
+        }
+      }
+
+      // The duplicate S3 message is dependant on the field_s3_path field. If
+      // the nid field is not present, display some warning text so the admin
+      // can fix it.
+      else {
+        $result->bookshelf_remove = "'Field: S3 Path' field is missing and is required!";
+      }
+    }
+
+    // The duplicate S3 message is dependant on the nid field. If the nid
     // field is not present, display some warning text so the admin can fix it.
     else {
       $result->bookshelf_remove = "'Content: Nid' field is missing and is required!";

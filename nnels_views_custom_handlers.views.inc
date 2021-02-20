@@ -15,6 +15,15 @@ function nnels_views_custom_handlers_views_data() {
     ),
   );
 
+  // Field: Duplicate S3
+  $data['node']['duplicate_s3'] = array(
+    'title' => t('Duplicate S3?'),
+    'field' => array(
+      'help'    => t('Checks for a duplicate S3 file.'),
+      'handler' => 'nnels_views_custom_handlers_duplicate_s3_views_field_handler',
+    ),
+  );
+
   // Field: File Size Warning.
   $data['node']['file_size_warning'] = array(
     'title' => t('File Size Warning'),

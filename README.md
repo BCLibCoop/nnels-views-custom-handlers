@@ -8,6 +8,12 @@ Add a bookshelf remove link for each row.
 
 This field requires the Content: Nid field to be added to the view.
 
+### Duplicate S3
+
+Add a duplicate S3 file message.
+
+This field requires the Content: Nid field and the Field: S3 Path field to be added to the view.
+
 ### File Size Warning Field
 
 The file size warning field will output some markup if the filesize is greater than 400MB.
