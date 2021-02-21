@@ -33,6 +33,15 @@ function nnels_views_custom_handlers_views_data() {
     ),
   );
 
+  // Field: S3
+  $data['node']['s3_path'] = array(
+    'title' => t('S3 Path'),
+    'field' => array(
+      'help'    => t('S3 path.'),
+      'handler' => 'nnels_views_custom_handlers_s3_path_views_field_handler',
+    ),
+  );
+
   // Area: Add Button.
   $data['views']['add_button'] = array(
     'title' => t('Add Button'),

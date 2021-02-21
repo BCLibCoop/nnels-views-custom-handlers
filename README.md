@@ -20,6 +20,12 @@ The file size warning field will output some markup if the filesize is greater t
 
 This field requires the File: Size field to be added to the view.
 
+### S3 Path
+
+Add a S3 Path to the row.
+
+This field requires the  Field: S3 Path field to be added to the view.
+
 ## Headers, Footers, No Results
 
 ### Add Button
