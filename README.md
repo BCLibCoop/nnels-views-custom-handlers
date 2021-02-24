@@ -2,6 +2,8 @@
 
 ## Fields
 
+All fields will show under the Content grouping.
+
 ### Bookshelf Remove Field
 
 Add a bookshelf remove link for each row.
@@ -24,7 +26,7 @@ This field requires the File: Size field to be added to the view.
 
 Add a S3 Path to the row.
 
-This field requires the  Field: S3 Path field to be added to the view.
+This field requires the Field: S3 Path field to be added to the view.
 
 ## Headers, Footers, No Results
 
@@ -51,3 +53,11 @@ Outputs a term's name with some markup.
 ### Term Warning
 
 Outputs a messages related to terms.
+
+## Filters
+
+### S3 Path
+
+Filters the results on configurable pattern is used to match on the Field: S3 path field.
+
+This filter requires the Field: S3 Path field to be added to the view.
