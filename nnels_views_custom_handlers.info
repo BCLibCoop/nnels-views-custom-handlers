@@ -18,3 +18,5 @@ files[] = plugins/nnels_views_custom_handlers_bookshelf_remove_views_field_handl
 files[] = plugins/nnels_views_custom_handlers_duplicate_s3_views_field_handler.inc
 files[] = plugins/nnels_views_custom_handlers_file_size_warning_views_field_handler.inc
 files[] = plugins/nnels_views_custom_handlers_s3_path_views_field_handler.inc
+; Filter Handlers
+files[] = plugins/nnels_views_custom_handlers_s3_path_views_filter_handler.inc

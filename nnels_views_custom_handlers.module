@@ -33,6 +33,49 @@ function nnels_views_custom_handlers_views_post_execute(&$view) {
   if (isset($view->field['s3_path'])) {
     _nnels_views_custom_handlers_set_s3_path_field($view);
   }
+  if (isset($view->filter['s3_path'])) {
+    _nnels_views_custom_handlers_apply_s3_path_filter($view);
+  }
+}
+
+/**
+ * Apply S3 Path Filter.
+ *
+ * @param object $view
+ */
+function _nnels_views_custom_handlers_apply_s3_path_filter(&$view) {
+  $pattern = $view->filter['s3_path']->options['pattern'];
+
+  // Gather file nodes so they can be loaded all at once.
+  $nids = array();
+  foreach ($view->result as $result) {
+    if (isset($view->field['field_s3_path']) && isset($result->{$view->field['field_s3_path']->field_alias})) {
+      $nids[$result->{$view->field['field_s3_path']->field_alias}] = TRUE;
+    }
+    // The S3 path filter is dependant on the field_s3_path field. If the
+    // field_s3_path field is not present, display some warning text so the
+    // admin can fix it.
+    else {
+      drupal_set_message("'Field: S3 Path' field is missing and is required!");
+    }
+  }
+
+  // All of these nodes should already be loaded in static memory and should
+  // add a very minimal amount of processing time.
+  $nodes = node_load_multiple(array_keys($nids));
+
+  // Filter the results.
+  foreach ($view->result as $index => $result) {
+    if (isset($view->field['field_s3_path']) && isset($result->{$view->field['field_s3_path']->field_alias})) {
+      $node = $nodes[$result->{$view->field['field_s3_path']->field_alias}];
+      $s3_path = field_get_items('node', $node, 'field_s3_path');
+      if ($s3_path) {
+        if (preg_match('/' . $pattern . '/', $s3_path[0]['value'])) {
+          unset($view->result[$index]);
+        }
+      }
+    }
+  }
 }
 
 /**
@@ -79,8 +122,8 @@ function _nnels_views_custom_handlers_set_duplicate_s3_field(&$view) {
       }
 
       // The duplicate S3 message is dependant on the field_s3_path field. If
-      // the nid field is not present, display some warning text so the admin
-      // can fix it.
+      // the field_s3_path field is not present, display some warning text so
+      // the admin can fix it.
       else {
         $result->bookshelf_remove = "'Field: S3 Path' field is missing and is required!";
       }
@@ -139,8 +182,8 @@ function _nnels_views_custom_handlers_set_s3_path_field(&$view) {
     }
 
     // The duplicate S3 message is dependant on the field_s3_path field. If
-    // the nid field is not present, display some warning text so the admin
-    // can fix it.
+    // the field_s3_path field is not present, display some warning text so the
+    // admin can fix it.
     else {
       $result->bookshelf_remove = "'Field: S3 Path' field is missing and is required!";
     }

@@ -40,6 +40,10 @@ function nnels_views_custom_handlers_views_data() {
       'help'    => t('S3 path.'),
       'handler' => 'nnels_views_custom_handlers_s3_path_views_field_handler',
     ),
+    'filter' => array(
+      'help'    => t('S3 Path.'),
+      'handler' => 'nnels_views_custom_handlers_s3_path_views_filter_handler',
+    ),
   );
 
   // Area: Add Button.
