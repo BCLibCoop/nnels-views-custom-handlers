@@ -33,6 +33,15 @@ function nnels_views_custom_handlers_views_data() {
     ),
   );
 
+  // Field: Library Login Warning.
+  $data['views']['library_login'] = array(
+    'title' => t('Library Login'),
+    'field' => array(
+      'help'    => t('The library login field (specific to organizations).'),
+      'handler' => 'nnels_views_custom_handlers_library_login_views_field_handler',
+    ),
+  );
+
   // Field: S3
   $data['node']['s3_path'] = array(
     'title' => t('S3 Path'),

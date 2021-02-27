@@ -29,7 +29,7 @@ function nnels_views_custom_handlers_views_post_execute(&$view) {
     _nnels_views_custom_handlers_set_file_size_warning_field($view);
   }
 
-  // S3 Path Field.
+  // S3 Path Field/Filter.
   if (isset($view->field['s3_path'])) {
     _nnels_views_custom_handlers_set_s3_path_field($view);
   }

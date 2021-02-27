@@ -22,6 +22,12 @@ The file size warning field will output some markup if the filesize is greater t
 
 This field requires the File: Size field to be added to the view.
 
+### Library Login Field
+
+The library login field will show a login link, application link or warning based on partner status.
+
+This field requires the Indexed Node: Node ID field to be added to the view.
+
 ### S3 Path
 
 Add a S3 Path to the row.
