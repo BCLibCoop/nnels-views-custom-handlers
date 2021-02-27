@@ -14,11 +14,6 @@ function nnels_views_custom_handlers_views_api() {
  */
 function nnels_views_custom_handlers_views_post_execute(&$view) {
 
-  // Bookshelf Remove Field.
-  if (isset($view->field['bookshelf_remove'])) {
-    _nnels_views_custom_handlers_set_bookshelf_remove_field($view);
-  }
-
   // Duplicate S3 Field.
   if (isset($view->field['duplicate_s3'])) {
     _nnels_views_custom_handlers_set_duplicate_s3_field($view);
@@ -74,27 +69,6 @@ function _nnels_views_custom_handlers_apply_s3_path_filter(&$view) {
           unset($view->result[$index]);
         }
       }
-    }
-  }
-}
-
-/**
- * Set Bookshelf Remove Field.
- *
- * @param object $view
- */
-function _nnels_views_custom_handlers_set_bookshelf_remove_field(&$view) {
-  foreach ($view->result as $result) {
-    if (isset($view->field['nid']) && isset($result->{$view->field['nid']->field_alias})) {
-      $flag = flag_get_flag('bookshelf');
-      $flag->unflag_short = 'Remove';
-      $result->bookshelf_remove = flag_create_link('bookshelf', $result->{$view->field['nid']->field_alias});
-    }
-
-    // The bookshelf_remove link is dependant on the nid field. If the nid
-    // field is not present, display some warning text so the admin can fix it.
-    else {
-      $result->bookshelf_remove = "'Content: Nid' field is missing and is required!";
     }
   }
 }
