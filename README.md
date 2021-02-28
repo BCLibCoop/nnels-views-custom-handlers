@@ -4,6 +4,10 @@
 
 All fields will show under the Content grouping.
 
+### Bookshelf Add Field
+
+Add a bookshelf add link for each now.
+
 ### Bookshelf Remove Field
 
 Add a bookshelf remove link for each row.
@@ -44,6 +48,9 @@ Displays a button, based on the node that the view is attached to. The path and 
 
 Display feed icons.
 
+### No Results
+
+Return a no results message with some options.
 ### Recently Added Title
 
 Outputs a translated title with some markup.
