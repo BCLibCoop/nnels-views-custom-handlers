@@ -6,6 +6,16 @@
 function nnels_views_custom_handlers_views_data() {
   $data = [];
 
+  // Field: Bookshelf Add. Using views here rather than node becuase solr
+  // searches don't allow node fields.
+  $data['views']['bookshelf_add'] = array(
+    'title' => t('Bookshelf Add Link'),
+    'field' => array(
+      'help'    => t('Add the add to bookshelf link for the bookshelf item.'),
+      'handler' => 'nnels_views_custom_handlers_bookshelf_add_views_field_handler',
+    ),
+  );
+
   // Field: Bookshelf Remove.
   $data['node']['bookshelf_remove'] = array(
     'title' => t('Bookshelf Remove Link'),
@@ -33,7 +43,8 @@ function nnels_views_custom_handlers_views_data() {
     ),
   );
 
-  // Field: Library Login Warning.
+  // Field: Library Login Warning. Using views here rather than node becuase
+  // solr searches don't allow node fields.
   $data['views']['library_login'] = array(
     'title' => t('Library Login'),
     'field' => array(
