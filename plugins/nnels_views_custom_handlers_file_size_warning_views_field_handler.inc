@@ -16,6 +16,27 @@ class nnels_views_custom_handlers_file_size_warning_views_field_handler extends 
    * Implements views_handler_field#render().
    */
   function render($value) {
-    return $value->file_size_warning;
+    if (isset($this->view->field['filesize']) && isset($value->{$this->view->field['filesize']->field_alias})) {
+
+      // If the filesize is greater than 400MB, show the file size warning.
+      if ((int) $value->{$this->view->field['filesize']->field_alias} > 419430400) {
+        $alt = t('Filesize Warning');
+        $title = t('This file&apos;s size is larger than average on NNELS. Expect a longer download time than usual, depending on your connection.');
+        $message = t('Long download time');
+
+        $markup = '<div class="file-size-warning" alt="' . $alt . '" title="' . $title . '">';
+        $markup .= '<i class="fa fa-exclamation-triangle" aria-hidden="true"> ' . $message . '</i>';
+        $markup .= '</div>';
+
+        return $markup;
+      }
+    }
+
+    // The file size warning is dependant on the filesize field. If the file-
+    // size field is not present, display some warning text so the admin can
+    // fix it.
+    else {
+      return "'File: Size' field is missing and is required!";
+    }
   }
 }
