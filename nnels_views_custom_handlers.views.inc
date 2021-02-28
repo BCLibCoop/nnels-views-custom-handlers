@@ -73,6 +73,15 @@ function nnels_views_custom_handlers_views_data() {
     ),
   );
 
+  // Area: No Results.
+  $data['views']['no_results'] = array(
+    'title' => t('No Results'),
+    'area' => array(
+      'help' => t('Messaging when there are no results.'),
+      'handler' => 'nnels_views_custom_handlers_no_results_views_area_handler',
+    ),
+  );
+
   // Area: Recently Added Title.
   $data['views']['recently_added_title'] = array(
     'title' => t('Recently Added Title'),

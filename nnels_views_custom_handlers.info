@@ -9,6 +9,7 @@ dependencies[] = views
 ; Area Handlers
 files[] = plugins/nnels_views_custom_handlers_add_button_views_area_handler.inc
 files[] = plugins/nnels_views_custom_handlers_feed_icons_views_area_handler.inc
+files[] = plugins/nnels_views_custom_handlers_no_results_views_area_handler.inc
 files[] = plugins/nnels_views_custom_handlers_recently_added_title_views_area_handler.inc
 files[] = plugins/nnels_views_custom_handlers_search_message_views_area_handler.inc
 files[] = plugins/nnels_views_custom_handlers_term_title_views_area_handler.inc
