@@ -36,7 +36,9 @@ class nnels_views_custom_handlers_file_size_warning_views_field_handler extends 
     // size field is not present, display some warning text so the admin can
     // fix it.
     else {
-      return "'File: Size' field is missing and is required!";
+      if (user_access('administer nodes')) //Only display for permissioned roles
+        return "'File: Size' field is missing and is required!";
+      else return NULL;
     }
   }
 }
