@@ -18,8 +18,9 @@ class nnels_views_custom_handlers_file_size_warning_views_field_handler extends 
   function render($value) {
     if (isset($this->view->field['filesize']) && isset($value->{$this->view->field['filesize']->field_alias})) {
 
-      // If the filesize is greater than 400MB, show the file size warning.
-      if ((int) $value->{$this->view->field['filesize']->field_alias} > 419430400) {
+      // If the filesize is greater than the threshold set, show the file size
+      // warning. Defaults to 400 MB in bytes.
+      if ((int) $value->{$this->view->field['filesize']->field_alias} > variable_get("nnels_filesize_large_threshold", 419430400)) {
         $alt = t('Filesize Warning');
         $title = t('This file&apos;s size is larger than average on NNELS. Expect a longer download time than usual, depending on your connection.');
         $message = t('Long download time');
