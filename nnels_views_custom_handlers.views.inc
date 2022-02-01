@@ -66,6 +66,15 @@ function nnels_views_custom_handlers_views_data() {
     ),
   );
 
+  // Filter: Accessibility Tags Exist.
+  $data['node']['accessibility_tags_exist'] = array(
+    'title' => t('Accessfibility Tags Exist'),
+    'filter' => array(
+      'help'    => t('A toggle to control if the records contain a file resource with accessibility tags or not.'),
+      'handler' => 'nnels_views_custom_handlers_accessibility_tags_exist_views_filter_handler',
+    ),
+  );
+
   // Area: Add Button.
   $data['views']['add_button'] = array(
     'title' => t('Add Button'),

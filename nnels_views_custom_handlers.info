@@ -23,3 +23,4 @@ files[] = plugins/nnels_views_custom_handlers_library_login_views_field_handler.
 files[] = plugins/nnels_views_custom_handlers_s3_path_views_field_handler.inc
 ; Filter Handlers
 files[] = plugins/nnels_views_custom_handlers_s3_path_views_filter_handler.inc
+files[] = plugins/nnels_views_custom_handlers_accessibility_tags_exist_views_filter_handler.inc
