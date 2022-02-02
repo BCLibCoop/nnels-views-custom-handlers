@@ -18,6 +18,50 @@ function nnels_views_custom_handlers_views_post_execute(&$view) {
   if (isset($view->filter['s3_path'])) {
     _nnels_views_custom_handlers_apply_s3_path_filter($view);
   }
+  if (isset($view->filter['accessibility_tags_exist'])) {
+    _nnels_views_custom_handlers_apply_accessibility_tags_exist_filter($view);
+  }
+}
+
+/**
+ * Apply S3 Path Filter.
+ *
+ * @param object $view
+ */
+function _nnels_views_custom_handlers_apply_accessibility_tags_exist_filter($view) {
+  if ($view->filter['accessibility_tags_exist']->value) {
+
+    // Gather file nodes so they can be loaded all at once.
+    $results = array();
+    foreach ($view->result as $result) {
+      $node_wrap = entity_metadata_wrapper('node', $result->nid);
+      if (isset($node_wrap->field_file_resource)) {
+        
+        // Set the flag value: FALSE if tags exists is yes and TRUE if tags
+        // exist is no.
+        $return_node = ($view->filter['accessibility_tags_exist']->value[0] != 1);
+        foreach ($node_wrap->field_file_resource->value() as $fc) {
+          $fc_wrap = entity_metadata_wrapper('field_collection_item', $fc);
+    
+          // limit to EPUB formats only (should be the first file):
+          //  7 - EPUB 2
+          //  8 - EPUB 3
+          //  10 - EPUB 3 - Full Text and Audio
+          //  18 - EPUB 2 - Fixed-Layout
+          //  19 - EPUB 3 - Fixed-Layout
+          if (in_array($fc_wrap->field_file_format->value(), [7, 8, 10, 18, 19]) && $fc_wrap->field_accessibility_tags->value()) {
+            // Reverse the flag.
+            $return_node = ($view->filter['accessibility_tags_exist']->value[0] == 1);
+          }
+        }
+
+        if ($return_node) {
+          $results[$result->nid] = $result;
+        }
+      }
+    }
+    $view->result = $results;
+  }
 }
 
 /**
