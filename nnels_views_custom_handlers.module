@@ -29,7 +29,7 @@ function nnels_views_custom_handlers_views_post_execute(&$view) {
  * @param object $view
  */
 function _nnels_views_custom_handlers_apply_accessibility_tags_exist_filter($view) {
-  if ($view->filter['accessibility_tags_exist']->value) {
+  if ($view->exposed_input['accessibility_tags_exist'] != 'All') {
 
     // Gather file nodes so they can be loaded all at once.
     $results = array();
@@ -39,7 +39,7 @@ function _nnels_views_custom_handlers_apply_accessibility_tags_exist_filter($vie
         
         // Set the flag value: FALSE if tags exists is yes and TRUE if tags
         // exist is no.
-        $return_node = ($view->filter['accessibility_tags_exist']->value[0] != 1);
+        $return_node = ($view->exposed_input['accessibility_tags_exist'] != 1);
         foreach ($node_wrap->field_file_resource->value() as $fc) {
           $fc_wrap = entity_metadata_wrapper('field_collection_item', $fc);
     
@@ -51,7 +51,7 @@ function _nnels_views_custom_handlers_apply_accessibility_tags_exist_filter($vie
           //  19 - EPUB 3 - Fixed-Layout
           if (in_array($fc_wrap->field_file_format->value(), [7, 8, 10, 18, 19]) && $fc_wrap->field_accessibility_tags->value()) {
             // Reverse the flag.
-            $return_node = ($view->filter['accessibility_tags_exist']->value[0] == 1);
+            $return_node = ($view->exposed_input['accessibility_tags_exist'] == 1);
           }
         }
 
