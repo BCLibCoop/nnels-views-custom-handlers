@@ -18,7 +18,7 @@ function nnels_views_custom_handlers_views_post_execute(&$view) {
   if (isset($view->filter['s3_path'])) {
     _nnels_views_custom_handlers_apply_s3_path_filter($view);
   }
-  if (isset($view->filter['accessibility_tags_exist'])) {
+  if (isset($view->exposed_input['accessibility_tags_exist'])) {
     _nnels_views_custom_handlers_apply_accessibility_tags_exist_filter($view);
   }
 }
